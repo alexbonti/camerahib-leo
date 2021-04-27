@@ -11,6 +11,7 @@ const officeRouter = require('./routes/office');
 const ruleRouter = require('./routes/rule');
 const userRouter = require('./routes/user');
 const alertRouter = require('./routes/alert');
+const violationRouter = require('./routes/violation'); // Stand in for alertRouter
 const app = express();
 
 // view engine setup
@@ -43,7 +44,8 @@ app.use('/camera', cameraRouter);
 app.use('/office', officeRouter);
 app.use('/rule', ruleRouter);
 app.use('/user', userRouter);
-app.use('/alert', alertRouter);
+// app.use('/alert', alertRouter);
+app.use('/alert', violationRouter); // Stand in for alertRouter
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
