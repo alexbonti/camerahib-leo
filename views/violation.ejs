@@ -159,11 +159,13 @@
                 </div>
                 <div class="col-12 col-lg-3 layout-top-spacing widget widget-content-area m-4">
                     <h4>Image Data</h4>
-                    <div class="text">Timestamp: </div>
-                    <div class="text">Policy 1</div>
-                    <div class="text">Policy 2</div>
-                    <div class="text">Policy 3</div>
-                    <div class="text">Policy 4</div>
+                    <% alertDocs.forEach(function (alertDoc) { %>
+                        <div class="text">Timestamp:  <%= alertDoc.timestamp %></div>
+                        <div class="text">Policy 1: <%= alertDoc.policy1 %></div>
+                        <div class="text">Policy 2: <%= alertDoc.policy2 %></div>
+                        <div class="text">Policy 3: <%= alertDoc.policy3 %></div>
+                        <div class="text">Policy 4: <%= alertDoc.policy4 %></div>
+                    <% }) %>
                 </div>
             </div>
         </div>
