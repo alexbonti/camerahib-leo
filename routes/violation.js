@@ -15,7 +15,8 @@ router.get('/', function (req, res, next) {
         // }
         let username = req.session.username;
         getAlertDocuments({}).then(alertDocuments => {
-            res.render('violation', {userName: username, alertDocs: alertDocuments});
+            let slicedalertDocuments = alertDocuments.slice(0, 10);
+            res.render('violation', {userName: username, alertDocs: slicedalertDocuments});
         });
 
     } else {

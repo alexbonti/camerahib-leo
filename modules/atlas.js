@@ -13,7 +13,7 @@ const client = new MongoClient(uri,
         useUnifiedTopology: true
     });
 
-
+// Get alert documents from mongodb atlas, default to 10 docs
 async function getAlertDocuments(query) {
     try {
         await client.connect();
