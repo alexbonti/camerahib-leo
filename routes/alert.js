@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require('../modules/db');
 const fs = require("fs");
 
+console.log('Alerts Loaded')
 router.get('/', function (req, res, next) {
     db.query('SELECT userID FROM camera WHERE cameraID = ' + '1', function (error, results, fields) {
         let resultArray = results[0];

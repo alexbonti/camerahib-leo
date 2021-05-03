@@ -10,7 +10,7 @@ const cameraRouter = require('./routes/camera');
 const officeRouter = require('./routes/office');
 const ruleRouter = require('./routes/rule');
 const userRouter = require('./routes/user');
-const alertRouter = require('./routes/alert');
+//const alertRouter = require('./routes/alert');
 const violationRouter = require('./routes/violation'); // Stand in for alertRouter
 const app = express();
 

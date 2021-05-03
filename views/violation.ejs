@@ -138,9 +138,38 @@
     </div>
     <!--  END SIDEBAR  -->
 
+    
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
+            <div class="row">
+                <div class="col-12 col-lg-12 layout-top-spacing widget widget-content-area m-4">
+                    <h4>New Alerts</h4>
+                    <div class="table-responsive">
+                        <table class="table-hover">
+                            <tbody id="newAlerts">
+                                <thead>
+                                    <th>Timestamp</th>
+                                    <th>Policy 1</th>
+                                    <th>Policy 2</th>
+                                    <th>Policy 3</th>
+                                    <th>Policy 4</th>
+                                </thead>
+                                <% alertDocs.forEach(function (alertDoc) { %>
+                                    <tr>
+                                        <td class="text"><%= alertDoc.timestamp %></td>
+                                        <td class="text"><%= alertDoc.policy1 %></td>
+                                        <td class="text"><%= alertDoc.policy2 %></td>
+                                        <td class="text"><%= alertDoc.policy3 %></td>
+                                        <td class="text"><%= alertDoc.policy4 %></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
             <div class="row">
                 <div class="col-12 col-lg-8 layout-top-spacing widget widget-content-area m-4">
                     <h4>Image Preview</h4>
@@ -157,6 +186,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-12 col-lg-3 layout-top-spacing widget widget-content-area m-4">
                     <h4>Alerts</h4>
                     <div class="table-responsive">
@@ -184,7 +214,7 @@
                 </div>
             </div>
         </div>
-        <%- include partials/footer.ejs %>
+       
     </div>
     <!--  END CONTENT AREA  -->
 
