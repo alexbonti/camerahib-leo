@@ -213,6 +213,19 @@
     checkall('todoAll', 'todochkbox');
     $('[data-toggle="tooltip"]').tooltip()
 </script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    // connect to the socket
+    // let socket = io.connect('http://localhost:3000/');
+    let socket = io();
+    socket.on('number', (msg) => {
+        console.log('Db Op Made: ' + msg);
+    })
+
+    socket.on('dbOpMade', (msg) => {
+        console.log('Db Op Made: ' + msg);
+    })
+</script>
 <!-- END PAGE LEVEL CUSTOM SCRIPTS -->
 </body>
 </html>

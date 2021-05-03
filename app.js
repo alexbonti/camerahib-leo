@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+
 const indexRouter = require('./routes/index');
 const cameraRouter = require('./routes/camera');
 const officeRouter = require('./routes/office');
@@ -13,6 +14,7 @@ const userRouter = require('./routes/user');
 const alertRouter = require('./routes/alert');
 const violationRouter = require('./routes/violation'); // Stand in for alertRouter
 const app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
