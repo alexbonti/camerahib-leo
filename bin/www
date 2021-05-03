@@ -7,6 +7,7 @@
 const app = require('../app');
 const debug = require('debug')('camarahub:server');
 const http = require('http');
+const express = require('express');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,8 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+const socketConnection=require('../modules/socket')
+socketConnection.connection(server)
 
 /**
  * Listen on provided port, on all network interfaces.

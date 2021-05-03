@@ -18,6 +18,8 @@
     <link href="assets/css/tables/table-basic.css" rel="stylesheet" type="text/css"/>
     <!-- END PAGE LEVEL CUSTOM STYLES -->
     <link rel="stylesheet" href="assets/css/rangeSlider.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
+
 </head>
 <body class="sidebar-noneoverflow" data-spy="scroll" data-target="#navSection" data-offset="140">
 
@@ -154,16 +156,9 @@
                                     <th>Policy 2</th>
                                     <th>Policy 3</th>
                                     <th>Policy 4</th>
+                                    <th>Link</th>
                                 </thead>
-                                <% alertDocs.forEach(function (alertDoc) { %>
-                                    <tr>
-                                        <td class="text"><%= alertDoc.timestamp %></td>
-                                        <td class="text"><%= alertDoc.policy1 %></td>
-                                        <td class="text"><%= alertDoc.policy2 %></td>
-                                        <td class="text"><%= alertDoc.policy3 %></td>
-                                        <td class="text"><%= alertDoc.policy4 %></td>
-                                    </tr>
-                                <% }) %>
+                             
                             </tbody>
                         </table>
                     </div>
@@ -171,7 +166,7 @@
 
             </div>
             <div class="row">
-                <div class="col-12 col-lg-8 layout-top-spacing widget widget-content-area m-4">
+                <!--div class="col-12 col-lg-8 layout-top-spacing widget widget-content-area m-4">
                     <h4>Image Preview</h4>
                     <div class="row my-3">
                         <div class="text-center">
@@ -185,9 +180,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div-->
                 
-                <div class="col-12 col-lg-3 layout-top-spacing widget widget-content-area m-4">
+                <div class="col-12 col-lg-12 layout-top-spacing widget widget-content-area m-4">
                     <h4>Alerts</h4>
                     <div class="table-responsive">
                         <table class="table-hover">
@@ -243,6 +238,66 @@
     checkall('todoAll', 'todochkbox');
     $('[data-toggle="tooltip"]').tooltip()
 </script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    // connect to the socket
+    // let socket = io.connect('http://localhost:3000/');
+    let socket = io();
+    socket.on('number', (msg) => {
+        console.log('Db Op Made: ' + msg);
+    })
+
+    socket.on('dbOpMade', (msg) => {
+        console.log('Db Op Made: ' + msg);
+        $("#newAlerts").append(` <tr>
+                                    <td class="text">${msg.timestamp}</td>
+                                    <td class="text">${msg.policy1}</td>
+                                    <td class="text">${msg.policy2}</td>
+                                    <td class="text">${msg.policy3}</td>
+                                    <td class="text">${msg.policy4}</td>
+                                    <td class="text">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertImage">
+                                            View
+                                        </button>
+                                    </td>
+                                </tr>`)
+
+        $('#alert-badge').prop("class", "badge alerted");
+        // $('#alert-badge').prop("background-color", "red");
+    })
+
+    
+    
+
+    // const OpenModal=()=>{
+    //    // alert('hello world')
+    //     $('#myModal').on('shown.bs.modal', function () {
+    //     $('#myInput').trigger('focus')
+        
+    // }
+
+</script>
 <!-- END PAGE LEVEL CUSTOM SCRIPTS -->
+<!-- Modal -->
+<div class="modal fade" id="alertImage" tabindex="-1" role="dialog" aria-labelledby="alertImageLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="alertImageLabel">Image Preview</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+          <img src="assets/img/test.jpg" width="100%" >
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
+
+
