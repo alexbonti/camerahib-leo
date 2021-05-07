@@ -37,9 +37,8 @@ app.use(session({
 }))
 
 
-
+// ? Is this required for anymore?
 routerTemp.get('/realtime',(req,res)=>{
-
      
     let temp={
         timestamp:parseInt(Math.random()*10),
@@ -53,6 +52,7 @@ routerTemp.get('/realtime',(req,res)=>{
 
 })
 
+// ** Publishes event on socket with alert data payload on POST call from the watcher
 routerTemp.post('/realtime', (req, res) => {
     console.log(req.body);
     socketAlerts.demo(req.body);
@@ -71,16 +71,6 @@ app.use('/user', userRouter);
 app.use('/data',routerTemp)
 // app.use('/alert', alertRouter);
 app.use('/alert', violationRouter); // Stand in for alertRouter
-
-
-
-
-
-
-
-
-
-
 
 
 // catch 404 and forward to error handler

@@ -1,3 +1,5 @@
+// ** Makes socket and binding declared at www available globally
+
 let io;
 
 
@@ -7,28 +9,22 @@ io = require('socket.io')(server);
 
 //socket test
 io.on('connection', (socket) => {
-    console.log('a user connected');
-    socket.on('disconnect', () => {
-      console.log('user disconnected');
-    });
+	console.log('a user connected');
+	socket.on('disconnect', () => {
+	  console.log('user disconnected');
+	});
 
 
 });
 
 }
 
-const demo=(data)=>{
-    console.log('test socket')
-    // temp = {
-    //     timestamp: 123234235,
-    //     policy1: true,
-    //     policy2: true,
-    //     policy3: false,
-    //     policy4: true,
-    // }
-    io.emit('dbOpMade', data);
+// Publishes socket with a given data payload
+const demo = (data) => {
+	console.log('test socket')
+	io.emit('dbOpMade', data);
 
 }
 
 
-module.exports ={connection,demo}
+module.exports = { connection, demo }

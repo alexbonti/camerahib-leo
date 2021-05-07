@@ -21,6 +21,8 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+
+// Socket setup
 const socketConnection=require('../modules/socket')
 socketConnection.connection(server)
 
