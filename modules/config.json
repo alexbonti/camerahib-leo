@@ -1,5 +1,7 @@
 {
     "DB_USER": "admin",
     "DB_PASSWORD": "h3althAIdbadmin",
-    "DB_NAME": "HealthAI"
+    "DB_NAME": "HealthAI",
+    "EMAIL_USER": "healthaiproject@gmail.com",
+    "EMAIL_PASS": "aisafetymailacc"
 }

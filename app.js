@@ -13,6 +13,7 @@ const ruleRouter = require('./routes/rule');
 const userRouter = require('./routes/user');
 //const alertRouter = require('./routes/alert');
 const violationRouter = require('./routes/violation'); // Stand in for alertRouter
+const { messageBuilder, setupMail, sendMail } = require('./modules/send_mail_notif');
 const app = express();
 
 
@@ -37,25 +38,38 @@ app.use(session({
 }))
 
 
-// ? Is this required for anymore?
-routerTemp.get('/realtime',(req,res)=>{
+// ? Is this required anymore?
+// routerTemp.get('/realtime',(req,res)=>{
      
-    let temp={
-        timestamp:parseInt(Math.random()*10),
-        policy1:true,
-        policy2:true,
-        policy3:true,
-        policy4:true,
-    }
-    socketAlerts.demo()
-    res.send({result:200})
+//     let temp={
+//         timestamp:parseInt(Math.random()*10),
+//         policy1:true,
+//         policy2:true,
+//         policy3:true,
+//         policy4:true,
+//     }
+//     socketAlerts.demo();
 
-})
+//     res.send({result:200});
+// })
 
 // ** Publishes event on socket with alert data payload on POST call from the watcher
 routerTemp.post('/realtime', (req, res) => {
     console.log(req.body);
     socketAlerts.demo(req.body);
+    //TODO Send email here
+    let msg = messageBuilder(req.body);
+    // ** Send message if the alert has any policy violations
+    // ** Empty message = no violations
+    if (msg != '') {
+        sendMail(setupMail(
+            'healthaiproject@gmail.com',
+            'New Alert on CameraHub!',
+            `${msg}`
+        )).then((res, rej) => {
+            console.log(`Email Sent!`)
+        });
+    }
 })
 
 app.use(logger('dev'));
